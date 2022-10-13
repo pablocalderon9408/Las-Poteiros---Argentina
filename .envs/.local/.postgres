@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=laspoteiros
+POSTGRES_USER=sKVrWdyxEqinAVhHGuVlOsbdCcGuetsm
+POSTGRES_PASSWORD=0QErnoZV2UGtYoLGGrjV72HrNTn2kvvY01rq5MR8zP6ws0lR88rpS7qNy8UKAzB8
