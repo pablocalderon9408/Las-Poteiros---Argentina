@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from laspoteiros.products.models import (
-    Product, 
-    ProductCategory, 
+    Product,
+    ProductCategory,
     ProductImageVariants,
     Ingredient,
     Unit
@@ -25,6 +25,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', "price"]
     search_fields = ["name", "price"]
     inlines = [ProductImageVariantsInLine]
+
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):

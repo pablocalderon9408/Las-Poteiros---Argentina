@@ -20,4 +20,3 @@ class CartAdmin(admin.ModelAdmin):
     list_display = ['created', 'id', 'user', 'is_active']
     inlines = [CartProductInLine, ]
     search_fields = ["cart"]
-

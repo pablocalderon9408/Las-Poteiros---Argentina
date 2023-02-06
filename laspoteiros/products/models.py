@@ -93,6 +93,7 @@ class Unit(RestaurantModel):
     class Meta:
         verbose_name_plural = "Units"
 
+
 class Ingredient(RestaurantModel):
 
     name = models.CharField(max_length=50, unique=True)
