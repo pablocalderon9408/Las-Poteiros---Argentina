@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from laspoteiros.products.models import Product, ProductCategory, ProductImageVariants
+from laspoteiros.products.models import (
+    Product, 
+    ProductCategory, 
+    ProductImageVariants,
+    Ingredient,
+    Unit
+    )
 
 
 @admin.register(ProductCategory)
@@ -19,3 +25,14 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', "price"]
     search_fields = ["name", "price"]
     inlines = [ProductImageVariantsInLine]
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    list_display = ['created', 'id', 'name']
+    search_fields = ["name"]
+
+
+@admin.register(Unit)
+class UnitAdmin(admin.ModelAdmin):
+    list_display = ['created', 'id', 'name']
+    search_fields = ["name"]

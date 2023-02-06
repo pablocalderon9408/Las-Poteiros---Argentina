@@ -1,7 +1,5 @@
 from django.contrib import admin
-from laspoteiros.orders.models import CartProduct
-
-from laspoteiros.orders.models import Order, Cart
+from laspoteiros.orders.models import Order, Cart, CartProduct
 
 
 @admin.register(Order)
@@ -22,3 +20,4 @@ class CartAdmin(admin.ModelAdmin):
     list_display = ['created', 'id', 'user', 'is_active']
     inlines = [CartProductInLine, ]
     search_fields = ["cart"]
+

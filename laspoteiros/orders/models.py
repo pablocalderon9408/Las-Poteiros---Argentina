@@ -43,8 +43,10 @@ class CartProduct(RestaurantModel):
         default=0
     )
 
-    price = models.FloatField(
-        default=0
+    price = models.DecimalField(
+        default=0.0,
+        max_digits=10,
+        decimal_places=2
     )
 
     @property

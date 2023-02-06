@@ -11,11 +11,16 @@ class ProductCategory(RestaurantModel):
     def __str__(self) -> str:
         return f"Product category: {self.name}"
 
+    class Meta:
+        verbose_name = "Product category"
+        verbose_name_plural = "Product categories"
+
 
 class Product(RestaurantModel):
 
     name = models.CharField(
-        max_length=50
+        max_length=50,
+        unique=True
         )
 
     slug_name = models.SlugField(max_length=200, unique=True, blank=True)
@@ -37,9 +42,11 @@ class Product(RestaurantModel):
         blank=True
         )
 
-    price = models.FloatField(
-        default=0
-        )
+    price = models.DecimalField(
+        default=0.0,
+        max_digits=10,
+        decimal_places=2
+    )
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -67,5 +74,45 @@ class ProductImageVariants(RestaurantModel):
         blank=True
         )
 
+    class Meta:
+        verbose_name_plural = "Product image variants"
+
     def __str__(self) -> str:
         return f"Variant image: {self.pk}"
+
+
+class Unit(RestaurantModel):
+
+    name = models.CharField(max_length=50)
+
+    slug_name = models.SlugField(max_length=200, unique=True)
+
+    def __str__(self) -> str:
+        return f"Unit: {self.name}"
+
+    class Meta:
+        verbose_name_plural = "Units"
+
+class Ingredient(RestaurantModel):
+
+    name = models.CharField(max_length=50, unique=True)
+
+    slug_name = models.SlugField(max_length=200, unique=True)
+
+    measurement_unit = models.ForeignKey(
+        Unit,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="ingredients"
+    )
+
+    def save(self):
+        if not self.slug_name:
+            self.slugify()
+        super().save()
+
+    def __str__(self) -> str:
+        return f"Ingredient: {self.name}"
+
+    class Meta:
+        verbose_name_plural = "Ingredients"
