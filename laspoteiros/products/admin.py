@@ -1,12 +1,8 @@
 from django.contrib import admin
 
-from laspoteiros.products.models import (
-    Product,
-    ProductCategory,
-    ProductImageVariants,
-    Ingredient,
-    Unit
-    )
+from laspoteiros.products.models import ProductCategory, Product, ProductImageVariants
+from laspoteiros.products.models import Ingredient
+from laspoteiros.products.models import UnitOfMeasure as Unit
 
 
 @admin.register(ProductCategory)
