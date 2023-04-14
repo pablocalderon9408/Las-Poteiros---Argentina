@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from laspoteiros.products.models import ProductCategory, Product, ProductImageVariants
 from laspoteiros.products.models import Ingredient
-from laspoteiros.products.models import UnitOfMeasure as Unit
 
 
 @admin.register(ProductCategory)
@@ -25,11 +24,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ['created', 'id', 'name']
-    search_fields = ["name"]
-
-
-@admin.register(Unit)
-class UnitAdmin(admin.ModelAdmin):
     list_display = ['created', 'id', 'name']
     search_fields = ["name"]
