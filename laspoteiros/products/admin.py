@@ -24,5 +24,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ['created', 'id', 'name']
+    list_display = ['id', 'name']
     search_fields = ["name"]

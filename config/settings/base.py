@@ -67,6 +67,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "django_celery_beat",
+    "nested_admin",
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",

@@ -15,10 +15,10 @@ class Ingredient(RestaurantModel):
 
     slug_name = models.SlugField(max_length=200, unique=True)
 
-    def save(self):
-        if not self.slug_name:
-            self.slug_name = self.slugify()
-        super().save()
+    # def save(self):
+    #     if not self.slug_name:
+    #         self.slug_name = self.slugify()
+    #     super().save()
 
     def __str__(self) -> str:
         return f"Ingredient: {self.name}"

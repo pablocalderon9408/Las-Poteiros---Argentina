@@ -30,7 +30,8 @@ class Product(RestaurantModel):
 
     description = models.CharField(
         max_length=500,
-        null=True
+        null=True,
+        blank=True
     )
 
     category = models.ForeignKey(

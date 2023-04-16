@@ -28,7 +28,6 @@ class IngredientStock(RestaurantModel):
 
     IngredientStock model is used to store the stock of the ingredients.
     """
-
     # Product
     ingredient = models.ForeignKey(
         'products.Ingredient',
@@ -66,14 +65,14 @@ class IngredientStock(RestaurantModel):
         'IngredientContainer',
         on_delete=models.CASCADE,
         related_name='stock',
-        default="Raw container"
+        null=True,
+        blank=True,
     )
 
     class Meta:
         """Meta option."""
 
-        verbose_name = 'stock'
-        verbose_name_plural = 'stocks'
+        verbose_name = 'ingredient stock'
         ordering = ['ingredient__name']
 
     def __str__(self):
@@ -110,21 +109,24 @@ class ProductStock(RestaurantModel):
     stock_min = models.PositiveIntegerField(
         'stock min',
         default=0,
-        help_text='Minimum stock of the product.'
+        help_text='Minimum stock of the product.',
+        null=True,
+        blank=True,
     )
 
     # Stock max
     stock_max = models.PositiveIntegerField(
         'stock max',
         default=0,
-        help_text='Maximum stock of the product.'
+        help_text='Maximum stock of the product.',
+        null=True,
+        blank=True,
     )
 
     class Meta:
         """Meta option."""
 
-        verbose_name = 'stock'
-        verbose_name_plural = 'stocks'
+        verbose_name = 'product stock'
         ordering = ['product__name']
 
     def __str__(self):
@@ -158,72 +160,7 @@ class IngredientContainer(RestaurantModel):
 
         verbose_name = 'container'
         verbose_name_plural = 'containers'
-        ordering = ['ingredient__name']
 
     def __str__(self):
         """Return ingredient name."""
-        return f"{self.ingredient.name} - {self.quantity} {self.container.name}"
-
-class Purchases(RestaurantModel):
-    """Purchases model.
-
-    Purchases model is used to store the information of the purchases.
-
-    This model will update the stock of the products and ingredients.
-    """
-
-    # Ingredient
-    ingredients = models.ManyToManyField(
-        'products.Ingredient',
-        related_name='purchases'
-    )
-
-    # Product
-    products = models.ManyToManyField(
-        'products.Product',
-        on_delete=models.CASCADE,
-        related_name='purchases'
-    )
-
-    # Quantity
-    quantity = models.PositiveIntegerField(
-        'quantity',
-        default=0,
-        help_text='Quantity of the product.'
-    )
-
-    # Price
-    price = models.PositiveIntegerField(
-        'price',
-        default=0,
-        help_text='Price of the product.'
-    )
-
-    # Date: Created date doesn't work as some purchases are done in the past
-    date = models.DateField(
-        'date',
-        auto_now=False,
-        auto_now_add=False,
-        help_text='Date of the purchase.'
-    )
-
-    class Meta:
-        """Meta option."""
-
-        verbose_name = 'purchase'
-        verbose_name_plural = 'purchases'
-        ordering = ['product__name']
-
-    def __str__(self):
-        """Return product name."""
-        return f"{self.product.name} - {self.quantity} {self.product.unit.name}"
-    
-    @property
-    def total_price(self):
-        """Take into account products and ingredients."""
-        products = self.products.all()
-        ingredients = self.ingredients.all()
-        total_ingredient_price = sum([ingredient.price for ingredient in ingredients])
-        total_product_price = sum([product.price for product in products])
-        return total_ingredient_price + total_product_price
-    
+        return f"{self.name}"

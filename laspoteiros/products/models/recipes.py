@@ -6,7 +6,6 @@ from django.db import models
 # Models
 from laspoteiros.utils.models import RestaurantModel
 from laspoteiros.products.models import Product, Ingredient
-from laspoteiros.products.models.recipes import Recipe
 
 
 class Recipe(RestaurantModel):
