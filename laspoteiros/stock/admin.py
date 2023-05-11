@@ -45,8 +45,8 @@ class IngredientPurchaseInlineAdmin(admin.TabularInline):
 
 @admin.register(Purchases)
 class PurchasesAdmin(admin.ModelAdmin):
-    list_display = ['id', 'created']
-    fields = ['id', 'date', 'total_amount_paid']
+    list_display = ['id', 'date', 'provider', 'total_amount_paid', 'created']
+    fields = ['date', 'total_amount_paid', 'provider']
     search_fields = ["product__name"]
     inlines = [ProductPurchaseInlineAdmin, IngredientPurchaseInlineAdmin]
 

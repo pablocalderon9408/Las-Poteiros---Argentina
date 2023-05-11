@@ -10,8 +10,18 @@ class ProductCategory(RestaurantModel):
 
     name = models.CharField(max_length=50)
 
+    slug_name = models.SlugField(max_length=200, unique=True, blank=True)
+
     def __str__(self) -> str:
         return f"Product category: {self.name}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug_name:
+            # Check existence
+            self.slug_name = slugify(self.name, separator="-")
+            if ProductCategory.objects.filter(slug_name=self.slug_name).exists():
+                self.slug_name = f"{self.slug_name}-{self.pos_id}"
+        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Product category"

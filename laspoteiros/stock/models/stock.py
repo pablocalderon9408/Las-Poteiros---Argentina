@@ -5,6 +5,8 @@ from laspoteiros.utils.models import RestaurantModel
 # Django
 from django.db import models
 
+from slugify import slugify
+
 
 class UnitOfMeasure(RestaurantModel):
     """
@@ -164,3 +166,11 @@ class IngredientContainer(RestaurantModel):
     def __str__(self):
         """Return ingredient name."""
         return f"{self.name}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug_name:
+            # Check existence
+            self.slug_name = slugify(self.name, separator="-")
+            if IngredientContainer.objects.filter(slug_name=self.slug_name).exists():
+                self.slug_name = f"{self.slug_name}-{self.pos_id}"
+        return super().save(*args, **kwargs)
