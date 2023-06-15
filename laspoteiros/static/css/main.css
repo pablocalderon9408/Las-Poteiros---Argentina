@@ -6915,6 +6915,6 @@ tbody tr td:last-child {
 
 
 /* CUSTOM CSS */
-.slick-track{
+.preview-slider .slick-track{
   width: 870px !important;
 }
