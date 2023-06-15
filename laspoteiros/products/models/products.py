@@ -51,7 +51,7 @@ class Product(RestaurantModel):
     )
 
     main_image = models.FileField(
-        upload_to='users/photos',
+        upload_to='images/',
         null=True,
         blank=True
         )
@@ -88,7 +88,7 @@ class ProductImageVariants(RestaurantModel):
         )
 
     image = models.FileField(
-        upload_to='users/photos',
+        upload_to='images/',
         null=True,
         blank=True
         )

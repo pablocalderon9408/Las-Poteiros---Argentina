@@ -12,11 +12,12 @@ class OrderAdmin(admin.ModelAdmin):
 class CartProductInLine(admin.TabularInline):
     model = CartProduct
     autocomplete_fields = ["cart"]
-    list_display = ['cart', "product", "quantity", "price"]
+    list_display = ["product", "quantity", "product__category__name"]
 
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ['created', 'id', 'user', 'is_active']
+    list_display = ['id', 'user', 'is_active', 'total', 'created']
+    readonly_fields = ['total']
     inlines = [CartProductInLine, ]
     search_fields = ["cart"]
