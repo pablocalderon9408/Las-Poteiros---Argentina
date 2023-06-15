@@ -166,7 +166,7 @@ class IngredientContainer(RestaurantModel):
     def __str__(self):
         """Return ingredient name."""
         return f"{self.name}"
-    
+
     def save(self, *args, **kwargs):
         if not self.slug_name:
             # Check existence

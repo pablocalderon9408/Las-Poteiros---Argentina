@@ -6,6 +6,7 @@ from laspoteiros.utils.models import RestaurantModel
 
 from slugify import slugify
 
+
 class ProductCategory(RestaurantModel):
 
     name = models.CharField(max_length=50)
@@ -14,7 +15,7 @@ class ProductCategory(RestaurantModel):
 
     def __str__(self) -> str:
         return f"Product category: {self.name}"
-    
+
     def save(self, *args, **kwargs):
         if not self.slug_name:
             # Check existence
@@ -72,7 +73,7 @@ class Product(RestaurantModel):
             if Product.objects.filter(slug_name=self.slug_name).exists():
                 self.slug_name = f"{self.slug_name}-{self.pos_id}"
         return super().save(*args, **kwargs)
-    
+
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"

@@ -24,14 +24,14 @@ class Cart(RestaurantModel):
 
     def __str__(self) -> str:
         return super().__str__()
-    
+
     @property
     def total(self):
         total = 0
         for cart_product in self.cartproduct_set.all():
             total += cart_product.product.price * cart_product.quantity
         return total
-    
+
     class Meta:
         verbose_name = 'Cart'
         verbose_name_plural = 'Carts'

@@ -4,7 +4,16 @@ from django.contrib import admin
 
 
 from laspoteiros.stock.models import UnitOfMeasure as Unit
-from laspoteiros.stock.models import IngredientContainer, IngredientStock, ProductStock, Purchases, IngredientPurchase, ProductPurchase, ProviderDeliveryDays, Provider
+from laspoteiros.stock.models import (
+    IngredientContainer,
+    IngredientStock,
+    ProductStock,
+    Purchases,
+    IngredientPurchase,
+    ProductPurchase,
+    ProviderDeliveryDays,
+    Provider
+)
 
 
 @admin.register(Unit)
@@ -25,11 +34,11 @@ class IngredientStockAdmin(admin.ModelAdmin):
     search_fields = ["ingredient__name"]
 
 
-
 @admin.register(ProductStock)
 class ProductStockAdmin(admin.ModelAdmin):
     list_display = ['id', 'product', 'unit', 'quantity']
     search_fields = ["product__name"]
+
 
 class ProductPurchaseInlineAdmin(admin.TabularInline):
     model = ProductPurchase

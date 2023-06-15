@@ -99,7 +99,7 @@ class Command(BaseCommand):
 
         for product in products:
             Product.objects.get_or_create(
-                name=product, 
+                name=product,
                 category=ProductCategory.objects.get(name="Primeros"),
                 defaults={
                     "description": "Lorem ipsum",
@@ -108,7 +108,7 @@ class Command(BaseCommand):
                 )
 
         print("Products created successfully")
-        
+
         # Create containers
         containers = [
             "Coca genérica",
@@ -121,4 +121,3 @@ class Command(BaseCommand):
             IngredientContainer.objects.get_or_create(name=container)
 
         print("Containers created successfully")
-

@@ -13,6 +13,5 @@ router.register("users", UserViewSet, basename="users")
 router.register("products", ProductViewSet, basename="products")
 
 
-
 app_name = "api"
 urlpatterns = router.urls

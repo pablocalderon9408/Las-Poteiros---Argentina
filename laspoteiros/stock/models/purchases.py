@@ -49,7 +49,6 @@ class Provider(RestaurantModel):
         help_text='Address of the provider.'
     )
 
-
     class Meta:
         """Meta option."""
 
@@ -95,7 +94,6 @@ class ProviderDeliveryDays(RestaurantModel):
         default=True,
         help_text='Set to false to disable a delivery day.'
     )
-
 
     def __str__(self):
         """Return users name."""

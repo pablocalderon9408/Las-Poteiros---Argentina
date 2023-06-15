@@ -6,6 +6,7 @@ from laspoteiros.utils.models import RestaurantModel
 
 from slugify import slugify
 
+
 class Ingredient(RestaurantModel):
     """
     This model is used to store the ingredients.

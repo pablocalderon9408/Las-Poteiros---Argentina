@@ -1,10 +1,10 @@
 # Products views.
 
 # Django
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
 # Models
-from laspoteiros.products.models import Product, ProductCategory
+from laspoteiros.products.models import Product
 
 
 class ProductListView(ListView):
