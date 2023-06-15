@@ -41,6 +41,13 @@
         <link rel="stylesheet" href="{% static 'vendor/slickslider/slick.min.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/niceselect/nice-select.min.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+        <script src="{% static 'vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/countdown/countdown.min.js' %}"></script>
+        <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
+        <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -705,20 +712,10 @@
                                         <label class="view-label off">-10%</label>
                                     </div> {% endcomment %}
                                     <ul class="preview-slider slider-arrow" id="product-detail-images-preview"> 
-                                        {% comment %} <li><img src="media/images/5abb4d88-d417-45b0-ab23-bc139da44668.jpg" alt="product"></li>
-                                        <li><img src="media/images/Asset_581x.png" alt="product"></li>
-                                        <li><img src="media/images/bajaresolucion_200x130_cm_AF_LP_Menu_impreso_vidrio_2022-01.jpg" alt="product"></li> {% endcomment %}
-                                        <li><img src="{% static 'images/product/05.jpg' %}" alt="product"></li>
-                                        <li><img src="{% static 'images/product/06.jpg' %}" alt="product"></li>
-                                        <li><img src="{% static 'images/product/07.jpg' %}" alt="product"></li>
+
                                     </ul>
                                     <ul class="thumb-slider" id="product-detail-images-little-slider">
-                                        {% comment %} <li><img src="media/images/5abb4d88-d417-45b0-ab23-bc139da44668.jpg" alt="product"></li>
-                                        <li><img src="media/images/Asset_581x.png" alt="product"></li>
-                                        <li><img src="media/images/bajaresolucion_200x130_cm_AF_LP_Menu_impreso_vidrio_2022-01.jpg" alt="product"></li> {% endcomment %}
-                                        <li><img src="{% static 'images/product/05.jpg' %}" alt="product"></li>
-                                        <li><img src="{% static 'images/product/06.jpg' %}" alt="product"></li>
-                                        <li><img src="{% static 'images/product/07.jpg' %}" alt="product"></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -1200,79 +1197,21 @@
                     url: url,
                     type: "GET",
                     success: function(data){
-                        let product_name = data.name;
-                        let product_description = data.description;
-                        let product_price = data.price;
-                        let product_image = data.main_image;
-                        let product_category = data.category;
-                        let product_image_variants = data.images;
-
-                        let preview = document.getElementById('product-detail-images-preview')
-                        let little_preview = document.getElementById('product-detail-images-little-slider')
-
-                        //for (let i = 0; i < product_image_variants.length; i++) {
-                        //    let source = product_image_variants[i].image.split("8000/")[1]
-                        //    let previewContent = `<li><img src="${source}" alt="product"></li>`;
-                        //    console.log(previewContent)
-                        //    preview.appendChild = previewContent;
-                        //    little_preview.appendChild = previewContent;
-                        //}
-
-                        // All childs must be removed before adding new ones
-                        //while (preview.firstChild) {
-                        //    preview.removeChild(preview.firstChild);
-                        //}
-                        //while (little_preview.firstChild) {
-                        //    little_preview.removeChild(little_preview.firstChild);
-                        //}
-                        //
-                        for (let i = 0; i < product_image_variants.length; i++) {
-                            let source = product_image_variants[i].image.split("8000/")[1];
-                            console.log(source)
-                            let liElement = document.createElement('li');
-                            let imgElement = document.createElement('img');
-                            imgElement.src = source;
-                            imgElement.alt = 'product';
-                            liElement.appendChild(imgElement);
-                            preview.appendChild(liElement);
-                            little_preview.appendChild(liElement);
-                            }
-
-                        //for (let i = 0; i < product_image_variants.length; i++) {
-                        //    debugger
-                        //    let imgElement = document.createElement('img');
-                        //    imgElement.src = product_image_variants[i].split("8000/")[1];
-                        //    preview.appendChild(imgElement);
-                        //}
-
-                        $('#product-detail-name').text(product_name);
-                        $('#product-detail-description').text(product_description);
-                        $('#product-detail-price').text(product_price);
-
-                        // Otros campos del modal...
-                        
-                        // Muestra el modal
+                        const {name, description, price, main_image, category, images} = data;
+                        for (let i = 0; i < images.length; i++) {
+                            let source = images[i].image.split("8000/")[1];
+                            $('.preview-slider, .thumb-slider').slick('resize')
+                            $('.preview-slider, .thumb-slider').slick('slickAdd', `<li><img src='${source}' alt='pablo puto'/></li>`)
+                        }
+                        $('#product-detail-name').text(name);
+                        $('#product-detail-description').text(description);
+                        $('#product-detail-price').text(price);
                         $('#product-view').modal('show');
-                        //$('.modal').on('shown.bs.modal', function (e) {
-                        //    $('.preview-slider, .thumb-slider').slick('setPosition', 0);
-                        //});
-
-                        // Carga el script slick.js
-                        // var scriptElement = document.createElement('script');
-                        // scriptElement.src = "{% static '' %}";
                     }
                 });
-
             }
         </script>
         <!-- VENDOR -->
-        <script src="{% static 'vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
-        <script src="{% static 'vendor/countdown/countdown.min.js' %}"></script>
-        <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
-        <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
-        <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
         <script src="{% static 'js/slick.js' %}"></script>
         <script src="{% static 'js/nice-select.js' %}"></script>
         <script src="{% static 'js/countdown.js' %}"></script>
