@@ -1,12 +1,7 @@
 from django.contrib import admin
 
-from laspoteiros.products.models import (
-    Product,
-    ProductCategory,
-    ProductImageVariants,
-    Ingredient,
-    Unit
-    )
+from laspoteiros.products.models import ProductCategory, Product, ProductImageVariants
+from laspoteiros.products.models import Ingredient
 
 
 @admin.register(ProductCategory)
@@ -29,11 +24,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ['created', 'id', 'name']
-    search_fields = ["name"]
-
-
-@admin.register(Unit)
-class UnitAdmin(admin.ModelAdmin):
-    list_display = ['created', 'id', 'name']
+    list_display = ['id', 'name']
     search_fields = ["name"]

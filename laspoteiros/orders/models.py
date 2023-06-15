@@ -18,9 +18,29 @@ class Cart(RestaurantModel):
         default=True,
     )
 
-    def __str__(self) -> str:
+    converted_into_order = models.BooleanField(
+        default=False,
+    )
 
+    def __str__(self) -> str:
         return super().__str__()
+    
+    @property
+    def total(self):
+        total = 0
+        for cart_product in self.cartproduct_set.all():
+            total += cart_product.product.price * cart_product.quantity
+        return total
+    
+    class Meta:
+        verbose_name = 'Cart'
+        verbose_name_plural = 'Carts'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'is_active'],
+                name='unique_active_cart'
+            )
+        ]
 
 
 class CartProduct(RestaurantModel):
@@ -42,16 +62,6 @@ class CartProduct(RestaurantModel):
     quantity = models.IntegerField(
         default=0
     )
-
-    price = models.DecimalField(
-        default=0.0,
-        max_digits=10,
-        decimal_places=2
-    )
-
-    @property
-    def total_price(self):
-        return self.products * self.quantity
 
 
 class Order(RestaurantModel):

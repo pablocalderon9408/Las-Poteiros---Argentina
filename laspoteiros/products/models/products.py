@@ -1,19 +1,32 @@
+# Django
 from django.db import models
 
+# Models
 from laspoteiros.utils.models import RestaurantModel
-from slugify import slugify
 
+from slugify import slugify
 
 class ProductCategory(RestaurantModel):
 
     name = models.CharField(max_length=50)
 
+    slug_name = models.SlugField(max_length=200, unique=True, blank=True)
+
     def __str__(self) -> str:
         return f"Product category: {self.name}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug_name:
+            # Check existence
+            self.slug_name = slugify(self.name, separator="-")
+            if ProductCategory.objects.filter(slug_name=self.slug_name).exists():
+                self.slug_name = f"{self.slug_name}-{self.pos_id}"
+        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Product category"
         verbose_name_plural = "Product categories"
+        app_label = "products"
 
 
 class Product(RestaurantModel):
@@ -27,7 +40,8 @@ class Product(RestaurantModel):
 
     description = models.CharField(
         max_length=500,
-        null=True
+        null=True,
+        blank=True
     )
 
     category = models.ForeignKey(
@@ -37,7 +51,7 @@ class Product(RestaurantModel):
     )
 
     main_image = models.FileField(
-        upload_to='users/photos',
+        upload_to='images/',
         null=True,
         blank=True
         )
@@ -58,6 +72,11 @@ class Product(RestaurantModel):
             if Product.objects.filter(slug_name=self.slug_name).exists():
                 self.slug_name = f"{self.slug_name}-{self.pos_id}"
         return super().save(*args, **kwargs)
+    
+    class Meta:
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+        app_label = "products"
 
 
 class ProductImageVariants(RestaurantModel):
@@ -69,51 +88,15 @@ class ProductImageVariants(RestaurantModel):
         )
 
     image = models.FileField(
-        upload_to='users/photos',
+        upload_to='images/',
         null=True,
         blank=True
         )
 
     class Meta:
         verbose_name_plural = "Product image variants"
+        verbose_name = "Product image variant"
+        app_label = "products"
 
     def __str__(self) -> str:
         return f"Variant image: {self.pk}"
-
-
-class Unit(RestaurantModel):
-
-    name = models.CharField(max_length=50)
-
-    slug_name = models.SlugField(max_length=200, unique=True)
-
-    def __str__(self) -> str:
-        return f"Unit: {self.name}"
-
-    class Meta:
-        verbose_name_plural = "Units"
-
-
-class Ingredient(RestaurantModel):
-
-    name = models.CharField(max_length=50, unique=True)
-
-    slug_name = models.SlugField(max_length=200, unique=True)
-
-    measurement_unit = models.ForeignKey(
-        Unit,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name="ingredients"
-    )
-
-    def save(self):
-        if not self.slug_name:
-            self.slugify()
-        super().save()
-
-    def __str__(self) -> str:
-        return f"Ingredient: {self.name}"
-
-    class Meta:
-        verbose_name_plural = "Ingredients"

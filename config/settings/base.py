@@ -67,6 +67,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "django_celery_beat",
+    "nested_admin",
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
@@ -74,9 +75,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "laspoteiros.users",
-    "laspoteiros.orders",
-    "laspoteiros.products",
+    "laspoteiros.users.apps.UsersConfig",
+    "laspoteiros.orders.apps.OrdersConfig",
+    'laspoteiros.products.apps.ProductsConfig',
+    'laspoteiros.stock.apps.StockConfig'
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
