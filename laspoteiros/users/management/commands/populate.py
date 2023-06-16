@@ -97,6 +97,44 @@ class Command(BaseCommand):
             "Arrieras"
         ]
 
+        proteins = [
+            "carne desmechada",
+            "pollo desmechado",
+            "chicharrón",
+            "tocineta",
+            "chorizo",
+            "salchicha",
+        ]
+
+        additions = [
+            "queso mozarrella",
+            "queso cheddar",
+            "queso de cabra",
+            "guacamole",
+            "plátano maduro",
+            "cebolla caramelizada",
+            "huevo frito",
+            "papas fritas",
+            "agrandado de papas"
+        ]
+
+        bebidas = [
+            "Coca-Cola",
+            "Coca-Cola Zero",
+            "Coca-Cola Light",
+            "Sprite",
+            "Fanta",
+            "Agua",
+            "Agua con gas",
+            "Agua sin gas",
+            "Cerveza",
+            "Cerveza sin alcohol",
+            "Cerveza artesanal",
+            "Vino tinto",
+            "Vino blanco",
+        ]
+
+
         for product in products:
             Product.objects.get_or_create(
                 name=product,
@@ -104,6 +142,36 @@ class Command(BaseCommand):
                 defaults={
                     "description": "Lorem ipsum",
                     "price": 20000
+                }
+                )
+            
+        for protein in proteins:
+            Product.objects.get_or_create(
+                name=protein,
+                category=ProductCategory.objects.get(slug_name="proteinas"),
+                defaults={
+                    "description": "Lorem ipsum",
+                    "price": 7000
+                }
+                )
+            
+        for addition in additions:
+            Product.objects.get_or_create(
+                name=addition,
+                category=ProductCategory.objects.get(slug_name="adiciones"),
+                defaults={
+                    "description": "Lorem ipsum",
+                    "price": 4000
+                }
+                )
+            
+        for bebida in bebidas:
+            Product.objects.get_or_create(
+                name=bebida,
+                category=ProductCategory.objects.get(slug_name="bebidas"),
+                defaults={
+                    "description": "Lorem ipsum",
+                    "price": 3000
                 }
                 )
 

@@ -1,6 +1,6 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
     <head>
         <!--=====================================
                     META TAG PART START
@@ -23,7 +23,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Product Simple - Greeny</title>
+        <title>Product Tab - Greeny</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -42,12 +42,21 @@
         <link rel="stylesheet" href="{% static 'vendor/niceselect/nice-select.min.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
 
+        <script src="{% static 'vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/countdown/countdown.min.js' %}"></script>
+        <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
+        <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
+        <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+
         <!-- CUSTOM -->
-        <link rel="stylesheet" href="{% static 'css/main.css'%}">
-        <link rel="stylesheet" href="{% static 'css/product-details.css'%}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
         <!--=====================================
                     CSS LINK PART END
         =======================================-->
+
     </head>
     <body>
         <div class="backdrop"></div>
@@ -585,7 +594,7 @@
                     </div>
                     <div class="cart-info-group">
                         <div class="cart-info">
-                            <h6><a href="product-single.html">existing product name</a></h6>
+                            <h6><a href="product-single.html">{{product}}</a></h6>
                             <p>Unit Price - $8.75</p>
                         </div>
                         <div class="cart-action-group">
@@ -875,10 +884,10 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-gallery">
                                     <div class="view-label-group">
-                                        <label class="view-label new">new  {{product.main_image}}</label>
+                                        <label class="view-label new">new</label>
                                         <label class="view-label off">-10%</label>
                                     </div>
-                                    <ul class="preview-slider slider-arrow">
+                                    <ul class="preview-slider slider-arrow"> 
                                         <li><img src="{% static 'images/product/01.jpg' %}" alt="product"></li>
                                         <li><img src="{% static 'images/product/01.jpg' %}" alt="product"></li>
                                         <li><img src="{% static 'images/product/01.jpg' %}" alt="product"></li>
@@ -901,7 +910,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="view-details">
                                     <h3 class="view-name">
-                                        <a href="product-video.html">existing product name</a>
+                                        <a href="product-video.html">{{product.name}}</a>
                                     </h3>
                                     <div class="view-meta">
                                         <p>SKU:<span>1234567</span></p>
@@ -973,16 +982,16 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="single-banner inner-section">
+        {% comment %} <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
             <div class="container">
-                <h2>product simple</h2>
+                <h2>product tab</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="shop-4column.html">shop-4column</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">product-simple</li>
+                    <li class="breadcrumb-item active" aria-current="page">product-tab</li>
                 </ol>
             </div>
-        </section>
+        </section> {% endcomment %}
         <!--=====================================
                     BANNER PART END
         =======================================-->
@@ -991,15 +1000,15 @@
         <!--=====================================
                 PRODUCT DETAILS PART START
         =======================================-->
-        <section class="inner-section">
+        <section class="inner-section mt-2 pt-4">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="details-gallery">
-                            <div class="details-label-group">
+                            {% comment %} <div class="details-label-group">
                                 <label class="details-label new">new</label>
                                 <label class="details-label off">-10%</label>
-                            </div>
+                            </div> {% endcomment %}
                             <ul class="details-preview"> 
                                 <li><img src="{% static 'images/product/01.jpg' %}" alt="product"></li>
                                 <li><img src="{% static 'images/product/01.jpg' %}" alt="product"></li>
@@ -1017,7 +1026,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <ul class="product-navigation">
+                        {% comment %} <ul class="product-navigation">
                             <li class="product-nav-prev">
                                 <a href="#">
                                     <i class="icofont-arrow-left"></i>
@@ -1038,9 +1047,9 @@
                                     </span>
                                 </a>
                             </li>
-                        </ul>
-                        <div class="details-content">
-                            <h3 class="details-name"><a href="#">existing product name</a></h3>
+                        </ul> {% endcomment %}
+                        <div class="details-content mt-4 pt-2">
+                            <h3 class="details-name"><a href="#">{{product.name}}</a></h3>
                             <div class="details-meta">
                                 <p>SKU:<span>1234567</span></p>
                                 <p>BRAND:<a href="#">radhuni</a></p>
@@ -1113,156 +1122,176 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="product-details-frame">
-                            <h3 class="frame-title">Description</h3>
-                            <div class="tab-descrip">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur, ex! Incidunt nemo aspernatur fugiat, saepe suscipit sit perferendis illum magnam voluptates aliquid blanditiis, dolor assumenda dolorem ullam harum, doloribus molestiae! Unde voluptas maiores exercitationem aperiam debitis accusantium, placeat vero neque, atque eius numquam incidunt, culpa a odit consequatur nostrum aut nisi quisquam sequi dignissimos sed. Odio necessitatibus officiis repudiandae omnis soluta fugiat aliquam eius quae. Unde, ipsam atque assumenda consequuntur quia alias nulla, cupiditate ab quos eveniet pariatur expedita repellendus fugit. Quisquam fuga et, dolore aut temporibus atque itaque nesciunt reiciendis nobis, deleniti nihil vel qui perferendis molestias aliquam doloremque.</p>
+                        <ul class="nav nav-tabs">
+                            <li><a href="#tab-desc" class="tab-link active" data-bs-toggle="tab">descriptions</a></li>
+                            <li><a href="#tab-spec" class="tab-link" data-bs-toggle="tab">Specifications</a></li>
+                            <li><a href="#tab-reve" class="tab-link" data-bs-toggle="tab">reviews (2)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="tab-desc">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product-details-frame">
+                                <div class="tab-descrip">
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur, ex! Incidunt nemo aspernatur fugiat, saepe suscipit sit perferendis illum magnam voluptates aliquid blanditiis, dolor assumenda dolorem ullam harum, doloribus molestiae! Unde voluptas maiores exercitationem aperiam debitis accusantium, placeat vero neque, atque eius numquam incidunt, culpa a odit consequatur nostrum aut nisi quisquam sequi dignissimos sed. Odio necessitatibus officiis repudiandae omnis soluta fugiat aliquam eius quae. Unde, ipsam atque assumenda consequuntur quia alias nulla, cupiditate ab quos eveniet pariatur expedita repellendus fugit. Quisquam fuga et, dolore aut temporibus atque itaque nesciunt reiciendis nobis, deleniti nihil vel qui perferendis molestias aliquam doloremque.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="product-details-frame">
-                            <h3 class="frame-title">Spacification</h3>
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Product code</th>
-                                        <td>SKU: 101783</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Weight</th>
-                                        <td>1kg, 2kg</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Styles</th>
-                                        <td>@Girly</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Properties</th>
-                                        <td>Short Dress</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-spec">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product-details-frame">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Product code</th>
+                                            <td>SKU: 101783</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Weight</th>
+                                            <td>1kg, 2kg</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Styles</th>
+                                            <td>@Girly</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Properties</th>
+                                            <td>Short Dress</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="product-details-frame">
-                            <h3 class="frame-title">Reviews (2)</h3>
-                            <ul class="review-list">
-                                <li class="review-item">
-                                    <div class="review-media">
-                                        <a class="review-avatar" href="#">
-                                            <img src="{% static 'images/avatar/01.jpg' %}" alt="review">
-                                        </a>
-                                        <h5 class="review-meta">
-                                            <a href="#">miron mahmud</a>
-                                            <span>June 02, 2020</span>
-                                        </h5>
-                                    </div>
-                                    <ul class="review-rating">
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rate-blank"></li>
-                                    </ul>
-                                    <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                    <form class="review-reply">
-                                        <input type="text" placeholder="reply your thoughts">
-                                        <button><i class="icofont-reply"></i>reply</button>
-                                    </form>
-                                    <ul class="review-reply-list">
-                                        <li class="review-reply-item">
-                                            <div class="review-media">
-                                                <a class="review-avatar" href="#">
-                                                    <img src="{% static 'images/avatar/02.jpg' %}" alt="review">
-                                                </a>
-                                                <h5 class="review-meta">
-                                                    <a href="#">labonno khan</a>
-                                                    <span><b>author -</b> June 02, 2020</span>
-                                                </h5>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-reve">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product-details-frame">
+                                <ul class="review-list">
+                                    <li class="review-item">
+                                        <div class="review-media">
+                                            <a class="review-avatar" href="#">
+                                                <img src="{% static 'images/avatar/01.jpg' %}" alt="review">
+                                            </a>
+                                            <h5 class="review-meta">
+                                                <a href="#">miron mahmud</a>
+                                                <span>June 02, 2020</span>
+                                            </h5>
+                                        </div>
+                                        <ul class="review-rating">
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rate-blank"></li>
+                                        </ul>
+                                        <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
+                                        <form class="review-reply">
+                                            <input type="text" placeholder="reply your thoughts">
+                                            <button><i class="icofont-reply"></i>reply</button>
+                                        </form>
+                                        <ul class="review-reply-list">
+                                            <li class="review-reply-item">
+                                                <div class="review-media">
+                                                    <a class="review-avatar" href="#">
+                                                        <img src="{% static 'images/avatar/02.jpg' %}" alt="review">
+                                                    </a>
+                                                    <h5 class="review-meta">
+                                                        <a href="#">labonno khan</a>
+                                                        <span><b>author -</b> June 02, 2020</span>
+                                                    </h5>
+                                                </div>
+                                                <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
+                                                <form class="review-reply">
+                                                    <input type="text" placeholder="reply your thoughts">
+                                                    <button><i class="icofont-reply"></i>reply</button>
+                                                </form>
+                                            </li>
+                                            <li class="review-reply-item">
+                                                <div class="review-media">
+                                                    <a class="review-avatar" href="#">
+                                                        <img src="{% static 'images/avatar/03.jpg' %}" alt="review">
+                                                    </a>
+                                                    <h5 class="review-meta">
+                                                        <a href="#">tahmina bonny</a>
+                                                        <span>June 02, 2020</span>
+                                                    </h5>
+                                                </div>
+                                                <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
+                                                <form class="review-reply">
+                                                    <input type="text" placeholder="reply your thoughts">
+                                                    <button><i class="icofont-reply"></i>reply</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="review-item">
+                                        <div class="review-media">
+                                            <a class="review-avatar" href="#">
+                                                <img src="{% static 'images/avatar/04.jpg' %}" alt="review">
+                                            </a>
+                                            <h5 class="review-meta">
+                                                <a href="#">shipu shikdar</a>
+                                                <span>June 02, 2020</span>
+                                            </h5>
+                                        </div>
+                                        <ul class="review-rating">
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rate-blank"></li>
+                                        </ul>
+                                        <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
+                                        <form class="review-reply">
+                                            <input type="text" placeholder="reply your thoughts">
+                                            <button><i class="icofont-reply"></i>reply</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-details-frame">
+                                <h3 class="frame-title">add your review</h3>
+                                <form class="review-form">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="star-rating">
+                                                <input type="radio" name="rating" id="star-1"><label for="star-1"></label>
+                                                <input type="radio" name="rating" id="star-2"><label for="star-2"></label>
+                                                <input type="radio" name="rating" id="star-3"><label for="star-3"></label>
+                                                <input type="radio" name="rating" id="star-4"><label for="star-4"></label>
+                                                <input type="radio" name="rating" id="star-5"><label for="star-5"></label>
                                             </div>
-                                            <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                            <form class="review-reply">
-                                                <input type="text" placeholder="reply your thoughts">
-                                                <button><i class="icofont-reply"></i>reply</button>
-                                            </form>
-                                        </li>
-                                        <li class="review-reply-item">
-                                            <div class="review-media">
-                                                <a class="review-avatar" href="#">
-                                                    <img src="images/avatar/03.jpg' %}" alt="review">
-                                                </a>
-                                                <h5 class="review-meta">
-                                                    <a href="#">tahmina bonny</a>
-                                                    <span>June 02, 2020</span>
-                                                </h5>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" placeholder="Describe"></textarea>
                                             </div>
-                                            <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                            <form class="review-reply">
-                                                <input type="text" placeholder="reply your thoughts">
-                                                <button><i class="icofont-reply"></i>reply</button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="review-item">
-                                    <div class="review-media">
-                                        <a class="review-avatar" href="#">
-                                            <img src="images/avatar/04.jpg' %}" alt="review">
-                                        </a>
-                                        <h5 class="review-meta">
-                                            <a href="#">shipu shikdar</a>
-                                            <span>June 02, 2020</span>
-                                        </h5>
-                                    </div>
-                                    <ul class="review-rating">
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rating"></li>
-                                        <li class="icofont-ui-rate-blank"></li>
-                                    </ul>
-                                    <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                    <form class="review-reply">
-                                        <input type="text" placeholder="reply your thoughts">
-                                        <button><i class="icofont-reply"></i>reply</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-details-frame">
-                            <h3 class="frame-title">add your review</h3>
-                            <form class="review-form">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="star-rating">
-                                            <input type="radio" name="rating" id="star-1"><label for="star-1"></label>
-                                            <input type="radio" name="rating" id="star-2"><label for="star-2"></label>
-                                            <input type="radio" name="rating" id="star-3"><label for="star-3"></label>
-                                            <input type="radio" name="rating" id="star-4"><label for="star-4"></label>
-                                            <input type="radio" name="rating" id="star-5"><label for="star-5"></label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button class="btn btn-inline">
+                                                <i class="icofont-water-drop"></i>
+                                                <span>drop your review</span>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" placeholder="Describe"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <button class="btn btn-inline">
-                                            <i class="icofont-water-drop"></i>
-                                            <span>drop your review</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1296,7 +1325,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/01.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/01.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1343,7 +1372,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/02.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/02.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1389,7 +1418,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/03.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/03.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1435,7 +1464,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/04.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/04.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1481,7 +1510,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/05.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/05.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1527,7 +1556,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/06.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/06.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1573,7 +1602,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/07.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/07.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1619,7 +1648,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/08.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/08.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1665,7 +1694,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/09.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/09.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1711,7 +1740,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="product-video.html">
-                                    <img src="images/product/10.jpg' %}" alt="product">
+                                    <img src="{% static 'images/product/10.jpg' %}" alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -1858,7 +1887,7 @@
                     <div class="col-sm-6 col-xl-3">
                         <div class="footer-widget">
                             <a class="footer-logo" href="#">
-                                <img src="images/logo.png' %}" alt="logo">
+                                <img src="{% static 'images/logo.png' %}" alt="logo">
                             </a>
                             <p class="footer-desc">Adipisci asperiores ipsum ipsa repellat consequatur repudiandae quisquam assumenda dolor perspiciatis sit ipsum dolor amet.</p>
                             <ul class="footer-social">
@@ -1921,8 +1950,8 @@
                             <h3 class="footer-title">Download App</h3>
                             <p class="footer-desc">Lorem ipsum dolor sit amet tenetur dignissimos ipsum eligendi autem obcaecati minus ducimus totam reprehenderit exercitationem!</p>
                             <div class="footer-app">
-                                <a href="#"><img src="images/google-store.png' %}" alt="google"></a>
-                                <a href="#"><img src="images/app-store.png' %}" alt="app"></a>
+                                <a href="#"><img src="{% static 'images/google-store.png' %}" alt="google"></a>
+                                <a href="#"><img src="{% static 'images/app-store.png' %}" alt="app"></a>
                             </div>
                         </div>
                     </div>
@@ -1932,10 +1961,10 @@
                         <div class="footer-bottom">
                             <p class="footer-copytext">&copy;  All Copyrights Reserved by <a target="_blank" href="https://themeforest.net/user/mironcoder">Mironcoder</a></p>
                             <div class="footer-card">
-                                <a href="#"><img src="images/payment/jpg/01.jpg' %}" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/02.jpg' %}" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/03.jpg' %}" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/04.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/01.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/02.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/03.jpg' %}" alt="payment"></a>
+                                <a href="#"><img src="{% static 'images/payment/jpg/04.jpg' %}" alt="payment"></a>
                             </div>
                         </div>
                     </div>
@@ -1951,13 +1980,27 @@
                     JS LINK PART START
         =======================================-->
         <!-- VENDOR -->
-        <script src="{% static 'vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
-        <script src="{% static 'vendor/countdown/countdown.min.js' %}"></script>
-        <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
-        <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
-        <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+        <script>
+            function getProductDetail(product_pk){
+                let url = ("{% url 'api:products-detail' -1 %}").replace('-1', product_pk);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(data){
+                        const {name, description, price, main_image, category, images} = data;
+                        for (let i = 0; i < images.length; i++) {
+                            let source = images[i].image.split("8000/")[1];
+                            $('.preview-slider, .thumb-slider').slick('resize')
+                            $('.preview-slider, .thumb-slider').slick('slickAdd', `<li><img src='${source}' alt='pablo puto'/></li>`)
+                        }
+                        $('#product-detail-name').text(name);
+                        $('#product-detail-description').text(description);
+                        $('#product-detail-price').text(price);
+                        $('#product-view').modal('show');
+                    }
+                });
+            }
+        </script>
 
         <!-- CUSTOM -->
         <script src="{% static 'js/nice-select.js' %}"></script>

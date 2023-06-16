@@ -5,10 +5,11 @@ from django.urls import include, path
 from django.views import defaults as default_views
 
 
-from laspoteiros.products.views import ProductListView
+from laspoteiros.products.views import ProductListView, ProductDetailView
 
 urlpatterns = [
     path("", ProductListView.as_view(), name="home"),
+    path("<str:pk>/", ProductDetailView.as_view(), name="product-detail"),
     path(settings.ADMIN_URL, admin.site.urls),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
